@@ -1,3 +1,4 @@
 class Item < ActiveRecord::Base
-  # attr_accessible :title, :body
+  belongs_to :user
+  attr_accessible :retweet_count
 end
