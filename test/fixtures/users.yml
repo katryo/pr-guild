@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  provider_twitter: MyString
+  uid_twitter: MyString
+  name_twitter: MyString
+  point: 1
+  retweets_count: 1
+
+two:
+  provider_twitter: MyString
+  uid_twitter: MyString
+  name_twitter: MyString
+  point: 1
+  retweets_count: 1
