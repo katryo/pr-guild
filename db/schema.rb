@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120903120421) do
+ActiveRecord::Schema.define(:version => 20120903124539) do
 
   create_table "items", :force => true do |t|
     t.integer  "retweet_count"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20120903120421) do
     t.integer  "retweets_count"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.integer  "icon_url_twitter"
   end
 
 end

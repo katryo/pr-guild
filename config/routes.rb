@@ -3,6 +3,8 @@ Prunion::Application.routes.draw do
 
   get "welcome/index"
   match 'auth/:provider/callback', to: 'sessions#create'
+match 'signout', to: 'sessions#destroy', as: 'signout'
+match 'auth/failure', to: redirect('/')
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

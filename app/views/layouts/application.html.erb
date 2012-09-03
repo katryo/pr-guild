@@ -10,7 +10,9 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <% if current_user %>
+          <%= image_tag(current_user.icon_url_twitter) %>
           <%= current_user.name_twitter %>でログイン中
+          <%= link_to "ログアウトする", "signout", :class => "btn"%>
         <% else %>
         <%= link_to "Sign in with Twitter", "/auth/twitter", :class => "btn"%>
       <% end %>
