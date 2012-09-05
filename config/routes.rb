@@ -1,4 +1,10 @@
 Prunion::Application.routes.draw do
+  get "users/index"
+
+  get "users/show"
+
+  get "users/destroy"
+
   resources :items
 
   get "welcome/index"

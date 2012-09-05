@@ -41,6 +41,7 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(params[:item])
+    @item.user_id = current_user.id
 
     respond_to do |format|
       if @item.save
@@ -57,6 +58,7 @@ class ItemsController < ApplicationController
   # PUT /items/1.json
   def update
     @item = Item.find(params[:id])
+    @item.user_id = current_user.id
 
     respond_to do |format|
       if @item.update_attributes(params[:item])

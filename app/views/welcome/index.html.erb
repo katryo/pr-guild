@@ -10,6 +10,9 @@
   <h3>
     宣伝
   </h3>
+  <%= @items.each do |item| %>
+    <%= link_to item.body, item %>
+  <% end %>
 </div><!--well-->
 </div><!--span12-->
 </div><!--row-->

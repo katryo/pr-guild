@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>宣伝ギルド</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>宣伝ギルド</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
-        <% if current_user %>
-          <%= image_tag(current_user.icon_url_twitter) %>
-          <%= current_user.name_twitter %>でログイン中
-          <%= link_to "ログアウトする", "signout", :class => "btn"%>
-        <% else %>
-        <%= link_to "Sign in with Twitter", "/auth/twitter", :class => "btn"%>
+        <div class="container">
+          <div class="row">
+            <div class="span12">
+              <%= link_to "宣伝ギルド", "/", :class => "brand"%>
+              <% if current_user %>
+                <%= image_tag(Twitter.profile_image(current_user.name_twitter), :size => "40x40") %>
+                <%= current_user.name_twitter %>でログイン中
+                <%= link_to "ログアウトする", "/signout", :class => "btn"%>
+              <% else %>
+                <%= link_to "Sign in with Twitter", "/auth/twitter", :class => "btn"%>
+              <% end %>
+              <%= link_to "宣伝一覧", "/items/", :class => "btn"%>
+              <%= link_to "ユーザー一覧", "/users/index", :class => "btn"%>
+            </div><!--span12-->
+          </div><!--row-->
+        </div><!--container-->
+      </div><!--navbar-inner-->
+    </div><!--navbar-->
+    <div class="container">
+      <% if notice%>
+        <div class="alert alert-success">
+          <%= notice %>
+        </div>
       <% end %>
-</div><!--navbar-inner-->
-</div><!--navbar-->
-<div class="container">
-  <% if notice%>
-  <div class="alert alert-success">
-    <%= notice %>
-  </div>
-<% end %>
-<%= yield %>
-</div><!--container-->
-</body>
+      <%= yield %>
+    </div><!--container-->
+  </body>
 </html>

@@ -11,7 +11,14 @@
     </div>
   <% end %>
 
+  <button value="登録">登録</button>
+
+   <div class="field">
+    <%= f.label "宣伝" %>
+    <%= f.text_area :body, rows:1 %>
+  </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag "register" %>
   </div>
 <% end %>

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :name_twitter, :point, :provider_twitter, :retweets_count, :uid_twitter, :icon_url_twitter
+  has_many :items
 
   def self.from_omniauth(auth)
     where(auth.slice("provider_twitter", "uid_twitter")).first || create_from_twitter_omniauth(auth)

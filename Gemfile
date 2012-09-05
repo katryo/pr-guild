@@ -21,6 +21,21 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+
+
+group :development, :test do
+  gem "rspec-rails"
+  gem "capybara"
+  gem "capybara-webkit"
+  gem "headless"
+  gem "factory_girl_rails"
+  gem "guard-rspec"
+  gem "rb-fsevent"
+  gem 'launchy'
+end
+
+
+gem 'twitter'
 gem 'jquery-rails'
 gem 'omniauth-twitter'
 # To use ActiveModel has_secure_password

@@ -9,7 +9,8 @@
 
 <% @items.each do |item| %>
   <tr>
-    <td><%= link_to 'Show', item %></td>
+    <td><%= link_to item.body, item %></td>
+    <td><%= item.user.name_twitter %></td>
     <td><%= link_to 'Edit', edit_item_path(item) %></td>
     <td><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
@@ -18,4 +19,4 @@
 
 <br />
 
-<%= link_to 'New Item', new_item_path %>
+<%= link_to '宣伝を登録する', new_item_path %>
