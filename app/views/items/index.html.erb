@@ -8,7 +8,7 @@
     <div><%= link_to item.body, item %></div>
     <div><%= link_to item.retweeted_count, item %></div>
     <div><%= link_to item.user.name_twitter, "/users/" + item.user_id.to_s %></div>
-    <div><%= link_to "宣伝する", item %></div>
+    <div><%= link_to "宣伝する", retweet_path %></div>
     <% if current_user && item.user_id = current_user.id %>
     <div><%= link_to 'Edit', edit_item_path(item) %></div>
     <div><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></div>

@@ -88,7 +88,7 @@ describe "A logged in user" do
       click_link "宣伝一覧"
       page.should have_content("アナテマ・フィジクスを見てね！")
       page.should have_content("10")
-      click_link "宣伝する"
+      click_button "宣伝する"
       page.should have_content("宣伝しました！")
     end
   end

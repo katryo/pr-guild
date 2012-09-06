@@ -1,4 +1,8 @@
 Prunion::Application.routes.draw do
+  get "retweets/create", :as => :retweet
+
+  get "retweets/destroy"
+
   get "users/index"
 
   get "users/show"
