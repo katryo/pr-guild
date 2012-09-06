@@ -14,7 +14,7 @@
             <div class="span12">
               <%= link_to "宣伝ギルド", "/", :class => "brand"%>
               <% if current_user %>
-                <%= image_tag(Twitter.profile_image(current_user.name_twitter), :size => "40x40") %>
+                <%= image_tag(current_user.icon_url_twitter, :size => "40x40") %>
                 <%= current_user.name_twitter %>でログイン中
                 <%= link_to "ログアウトする", "/signout", :class => "btn"%>
               <% else %>

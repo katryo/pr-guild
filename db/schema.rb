@@ -11,17 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120905084848) do
+ActiveRecord::Schema.define(:version => 20120906075302) do
 
   create_table "items", :force => true do |t|
-    t.integer  "retweet_count"
     t.integer  "user_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.text     "body"
+    t.integer  "retweeted_count", :default => 0
   end
 
   add_index "items", ["user_id"], :name => "index_items_on_user_id"
+
+  create_table "retweets", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "retweets", ["item_id"], :name => "index_retweets_on_item_id"
+  add_index "retweets", ["user_id"], :name => "index_retweets_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "provider_twitter"
@@ -31,7 +41,8 @@ ActiveRecord::Schema.define(:version => 20120905084848) do
     t.integer  "retweets_count"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
-    t.integer  "icon_url_twitter"
+    t.string   "icon_url_twitter"
+    t.text     "description"
   end
 
 end

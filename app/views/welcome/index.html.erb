@@ -10,9 +10,15 @@
   <h3>
     宣伝
   </h3>
-  <%= @items.each do |item| %>
-    <%= link_to item.body, item %>
-  <% end %>
+  <ul>
+    <%= @items.each do |item| %>
+      <li>
+      <%= link_to item.body, item %>
+      <%= link_to item.retweeted_count, item %>
+      <%= link_to "宣伝する", item %>
+      </li>
+    <% end %>
+  </ul>
 </div><!--well-->
 </div><!--span12-->
 </div><!--row-->

@@ -11,14 +11,14 @@
     </div>
   <% end %>
 
-  <button value="登録">登録</button>
 
-   <div class="field">
+  <div class="field">
+    <p>宣伝の文章は100文字以内までしか書けません</p>
     <%= f.label "宣伝" %>
-    <%= f.text_area :body, rows:1 %>
+    <%= f.text_area :body %>
   </div>
 
   <div class="actions">
-    <%= submit_tag "register" %>
+    <%= submit_tag "登録" %>
   </div>
 <% end %>

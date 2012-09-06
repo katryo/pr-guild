@@ -32,9 +32,13 @@ group :development, :test do
   gem "guard-rspec"
   gem "rb-fsevent"
   gem 'launchy'
+  gem 'spork'
+  gem "guard-spork"
+  gem 'database_cleaner'
 end
 
 
+gem "growl"
 gem 'twitter'
 gem 'jquery-rails'
 gem 'omniauth-twitter'

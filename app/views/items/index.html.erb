@@ -1,22 +1,24 @@
-<h1>Listing items</h1>
+<h1>宣伝一覧</h1>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @items.each do |item| %>
-  <tr>
-    <td><%= link_to item.body, item %></td>
-    <td><%= item.user.name_twitter %></td>
-    <td><%= link_to 'Edit', edit_item_path(item) %></td>
-    <td><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+  <ul>
+
+    <% @items.each do |item| %>
+      <li>
+    <div><%= link_to item.body, item %></div>
+    <div><%= link_to item.retweeted_count, item %></div>
+    <div><%= link_to item.user.name_twitter, "/users/" + item.user_id.to_s %></div>
+    <div><%= link_to "宣伝する", item %></div>
+    <% if current_user && item.user_id = current_user.id %>
+    <div><%= link_to 'Edit', edit_item_path(item) %></div>
+    <div><%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %></div>
+  <% end %>
+</li>
 <% end %>
-</table>
+
+</ul>
 
 <br />
-
-<%= link_to '宣伝を登録する', new_item_path %>
+<% if current_user %>
+  <%= link_to '宣伝を登録する', new_item_path %>
+<% end %>

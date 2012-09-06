@@ -3,8 +3,10 @@
 
 <% @users.each do |user| %>
   <div class="well">
-    <%= image_tag(Twitter.profile_image(user.name_twitter)) %>
   <%= user.name_twitter %>
-  <%= Twitter.user(user.name_twitter)[:description] %>
+  <%= user.uid_twitter %>
+  <%= image_tag(user.icon_url_twitter) %>
+  <%= user.point %>
+  <%= user.retweets_count %>
 </div><!--well-->
 <% end %>
