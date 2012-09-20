@@ -2,7 +2,6 @@
 FactoryGirl.define do
   factory :item do
     body "アナテマ・フィジクスを見てね！" 
-    retweeted_count 10
     user
   end
   factory :user do

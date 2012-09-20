@@ -10,7 +10,7 @@ describe "A user who is not logged in" do
     page.should have_content("アナテマ・フィジクスを見てね！")
   end
   it "should see the all items page" do
-    item = FactoryGirl.create(:item, body:"デンキノベルを見てね！", retweeted_count:22)
+    item = FactoryGirl.create(:item, body:"デンキノベルを見てね！")
     user = item.user
     visit items_path
     click_link "宣伝一覧"
@@ -37,6 +37,7 @@ describe "A logged in user" do
       :description => "こんにちはこんにちは！"
     }
     }
+      visit "/auth/twitter"
   end
 
   after do
@@ -44,7 +45,6 @@ describe "A logged in user" do
   end
   describe "in items page" do
     it "should be written by a login user" do
-      visit "/auth/twitter"
       visit items_path
       click_link "宣伝一覧"
       click_link "宣伝を登録する"
@@ -58,7 +58,6 @@ describe "A logged in user" do
     end
 
     it "should not see edit link" do
-      visit "/auth/twitter"
       visit items_path
       click_link "宣伝一覧"
       click_link "宣伝を登録する"
@@ -72,7 +71,6 @@ describe "A logged in user" do
     end
 
     it "should not be registerd when filled text is longer than 100" do
-      visit "/auth/twitter"
       visit items_path
       click_link "宣伝一覧"
       click_link "宣伝を登録する"
@@ -83,7 +81,6 @@ describe "A logged in user" do
 
     it "should retweet when user push the button" do
     item = FactoryGirl.create(:item)
-      visit "/auth/twitter"
       visit items_path
       click_link "宣伝一覧"
       page.should have_content("アナテマ・フィジクスを見てね！")
@@ -126,6 +123,9 @@ describe "A logged in user" do
       click_link "宣伝する"
       click_link "宣伝する"
       page.should have_no_content("音楽を聴いて！")
+      visit "/"
+      page.should have_no_content("音楽を聴いて！")
+      page.should have_content("10ポイント")
     end
   end
 end
