@@ -87,9 +87,45 @@ describe "A logged in user" do
       visit items_path
       click_link "宣伝一覧"
       page.should have_content("アナテマ・フィジクスを見てね！")
-      page.should have_content("10")
-      click_button "宣伝する"
-      page.should have_content("宣伝しました！")
+      page.should have_content("0回宣伝されている")
+      click_link "宣伝する"
+      page.should have_content("宣伝に成功しました！")
+      page.should have_content("6ポイント")
+    end
+  end
+
+
+describe "A logged in user" do
+  before do
+    OmniAuth.config.test_mode = true
+    user = FactoryGirl.create(:user)
+    item = FactoryGirl.create(:item, body: "音楽を聴いて！")
+    OmniAuth.config.mock_auth[:twitter] = {
+      :uid => 11111,
+      :provider => "twitter",
+      :info => {
+      :description => "こんにちはこんにちは！"
+    }
+    }
+      visit "/auth/twitter"
+  end
+
+  after do
+    OmniAuth.config.test_mode = false
+  end
+    it "should decrease point from the user who created the item" do
+      visit items_path
+      click_link "宣伝一覧"
+      page.should have_content("0回宣伝されている")
+      click_link "宣伝する"
+      page.should have_content("宣伝に成功しました！")
+      page.should have_content("6ポイント")
+      page.should have_content("(4ポイント)")
+      click_link "宣伝する"
+      click_link "宣伝する"
+      click_link "宣伝する"
+      click_link "宣伝する"
+      page.should have_no_content("音楽を聴いて！")
     end
   end
 end

@@ -16,6 +16,7 @@
               <% if current_user %>
                 <%= image_tag(current_user.icon_url_twitter, :size => "40x40") %>
                 <%= current_user.name_twitter %>でログイン中
+                <%= current_user.point %>ポイント
                 <%= link_to "ログアウトする", "/signout", :class => "btn"%>
               <% else %>
                 <%= link_to "Sign in with Twitter", "/auth/twitter", :class => "btn"%>

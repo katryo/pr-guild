@@ -7,9 +7,8 @@ FactoryGirl.define do
   end
   factory :user do
     sequence(:name_twitter) { |n| "denki#{n}" }
-  #  description "かとりょーです"
     sequence(:uid_twitter) { |n| n + 1000 }
-    retweets_count 5
+    point 5
   end
 
   factory :retweet do
