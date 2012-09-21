@@ -3,13 +3,14 @@ Prunion::Application.routes.draw do
 
   get "retweets/destroy"
 
-  get "users/index"
+ # get "users/index", :as => :users
 
-  get "users/show"
+  #get "users/show"
 
-  get "users/destroy"
+  #get "users/destroy"
 
 
+  resources :users
   resources :items
 
   get "welcome/index"

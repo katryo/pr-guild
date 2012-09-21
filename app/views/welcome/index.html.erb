@@ -11,27 +11,11 @@
         宣伝
       </h3>
       <ul>
-        <% @retweets.each do |retweet| %>
-          <% if retweet.item.user.point != 0 %>
-
-          <li>
-          <%= retweet.id %>
-          <%= retweet.user_id %>
-          <% if retweet.item %>
-            <%= retweet.item.body %>
-          <% end %>
-          </li>
-        <% end %>
-        <% end %>
-      </ul>
-      <ul>
         <% @items.each do |item| %>
           <% if item.user.point != 0 %>
-
-
             <li>
             <%= link_to item.body, item %>
-            <%= link_to item.retweeted_count, item %>
+            <%= link_to item.retweets.count, item %>
             <%= link_to "宣伝する", retweet_path(:item_id => item.id), :class => "btn" %>
             </li>
 

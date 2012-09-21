@@ -1,2 +1,17 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= @user.name_twitter %>さんの詳細</h1>
+  <%= link_to image_tag(@user.icon_url_twitter), "https://twitter.com/" + @user.name_twitter %>
+  <%= link_to @user.name_twitter, "https://twitter.com/" + @user.name_twitter %>
+  <%= @user.description %>
+  <%= @user.point %>ポイント
+  <%= @user.retweets.count %>回宣伝した
+  <ul>
+  <% @items.each do |item| %>
+    <li>
+    <%= item.body %>
+    <%= item.retweets.count %>回宣伝された
+    <% if current_user && current_user == @user %>
+      <%= link_to "削除する", item, method: :delete, confirm: "本当に削除しますか？" %>
+    <% end %>
+    </li>
+  <% end %>
+  </ul>

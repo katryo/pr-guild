@@ -44,7 +44,7 @@ describe "A logged in user" do
     OmniAuth.config.test_mode = false
   end
   describe "in items page" do
-    it "should be written by a login user" do
+    it "should be written by a login user and find info in the user page" do
       visit items_path
       click_link "宣伝一覧"
       click_link "宣伝を登録する"
@@ -55,6 +55,13 @@ describe "A logged in user" do
       page.should have_content("Edit")
       click_link "ユーザー一覧"
       page.should have_content("denki")
+      visit users_path
+      page.should have_content("5ポイント")
+      page.should have_content("denki")
+      click_link "の詳細"
+      page.should have_content("アナテマ")
+      page.should have_content("削除する")
+
     end
 
     it "should not see edit link" do
@@ -127,5 +134,6 @@ describe "A logged in user" do
       page.should have_no_content("音楽を聴いて！")
       page.should have_content("10ポイント")
     end
+
   end
 end
