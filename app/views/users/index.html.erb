@@ -1,10 +1,12 @@
 <h1>ユーザー一覧</h1>
 <% @users.each do |user| %>
   <div class="well">
-  <%= link_to image_tag(user.icon_url_twitter), "https://twitter.com/" + user.name_twitter %>
-  <%= link_to user.name_twitter, "https://twitter.com/" + user.name_twitter %>
+  <%= link_to image_tag(user.icon_url_twitter), user %>
+  <%= link_to user.name_twitter, user %>
   <%= user.point %>ポイント
   <%= user.retweets.count %>回宣伝した
+  <%= user.items.count %>個の宣伝文を登録した
   <%= link_to user.name_twitter + "の詳細", user, :class => "btn btn-info"%>
+  <%= link_to user.name_twitter + "のTwitterアカウント", "https://twitter.com/" + user.name_twitter, :class => "btn", :target => "_blank" %>
 </div><!--well-->
 <% end %>

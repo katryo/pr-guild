@@ -6,15 +6,20 @@
   <% @items.each do |item| %>
 
     <% if item.user.point != 0%>
-    <li>
+      <li>
+      <p>
     <%= link_to item.body, item %>
     <%= link_to item.retweets.count, item %>回宣伝されている
-    <%= link_to item.user.name_twitter, "/users/" + item.user_id.to_s %>(<%= item.user.point %>ポイント)
     <%= link_to "宣伝する", retweet_path(:item_id => item.id), :class => "btn" %>
     <% if current_user && item.user_id = current_user.id %>
-     <%= link_to 'Edit', edit_item_path(item) %>
-      <%= link_to 'Destroy', item, confirm: 'Are you sure?', method: :delete %>
+     <%= link_to '編集する', edit_item_path(item) %>
+     <%= link_to '削除する', item, confirm: '本当に削除しますか？', method: :delete %>
     <% end %>
+     </p>
+     <p>
+    <%= link_to image_tag(item.user.icon_url_twitter), item.user %>
+    <%= link_to item.user.name_twitter, item.user %>(<%= item.user.point %>ポイント)
+    </p>
     </li>
 
   <% end %>

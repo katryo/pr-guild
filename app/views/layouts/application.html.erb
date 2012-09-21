@@ -13,16 +13,16 @@
           <div class="row">
             <div class="span12">
               <%= link_to "宣伝ギルド", "/", :class => "brand"%>
+              <%= link_to "宣伝一覧", "/items/", :class => "btn"%>
+              <%= link_to "ユーザー一覧", users_path, :class => "btn"%>
               <% if current_user %>
-                <%= image_tag(current_user.icon_url_twitter, :size => "40x40") %>
-                <%= current_user.name_twitter %>でログイン中
+                <%= link_to image_tag(current_user.icon_url_twitter, :size => "40x40"), current_user %>
+                <%= link_to current_user.name_twitter, current_user %>
                 <%= current_user.point %>ポイント
                 <%= link_to "ログアウトする", "/signout", :class => "btn"%>
               <% else %>
                 <%= link_to "Sign in with Twitter", "/auth/twitter", :class => "btn"%>
               <% end %>
-              <%= link_to "宣伝一覧", "/items/", :class => "btn"%>
-              <%= link_to "ユーザー一覧", users_path, :class => "btn"%>
             </div><!--span12-->
           </div><!--row-->
         </div><!--container-->

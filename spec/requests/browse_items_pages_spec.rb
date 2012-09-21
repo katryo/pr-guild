@@ -52,7 +52,7 @@ describe "A logged in user" do
       click_button "登録"
       click_link "宣伝一覧"
       page.should have_content("アナテマ・フィジクスをぜひプレイしてみて！")
-      page.should have_content("Edit")
+      page.should have_content("編集")
       click_link "ユーザー一覧"
       page.should have_content("denki")
       visit users_path
@@ -74,7 +74,7 @@ describe "A logged in user" do
       page.should have_content("アナテマ・フィジクスをぜひプレイしてみて！")
       click_link "ログアウトする"
       click_link "宣伝一覧"
-      page.should have_no_content("Edit")
+      page.should have_no_content("編集")
     end
 
     it "should not be registerd when filled text is longer than 100" do
@@ -102,8 +102,8 @@ describe "A logged in user" do
 describe "A logged in user" do
   before do
     OmniAuth.config.test_mode = true
+    item = FactoryGirl.build(:item, body: "音楽を聴いて！")
     user = FactoryGirl.create(:user)
-    item = FactoryGirl.create(:item, body: "音楽を聴いて！")
     OmniAuth.config.mock_auth[:twitter] = {
       :uid => 11111,
       :provider => "twitter",

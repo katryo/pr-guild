@@ -14,8 +14,10 @@
         <% @items.each do |item| %>
           <% if item.user.point != 0 %>
             <li>
-            <%= link_to item.body, item %>
-            <%= link_to item.retweets.count, item %>
+            <%= item.body %>
+            <%= link_to item.retweets.count, item %>回宣伝されている
+            <%= link_to image_tag(item.user.icon_url_twitter), item.user %>
+            <%= link_to item.user.name_twitter, item.user %>
             <%= link_to "宣伝する", retweet_path(:item_id => item.id), :class => "btn" %>
             </li>
 
