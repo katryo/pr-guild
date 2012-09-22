@@ -1,18 +1,20 @@
 class User < ActiveRecord::Base
   after_initialize :set_default_params
-  attr_accessible :name_twitter, :point, :provider_twitter, :retweets_count, :uid_twitter, :icon_url_twitter, :description
+  attr_accessible :name_twitter, :point, :provider_twitter, :uid_twitter, :icon_url_twitter, :description
   has_many :items, :dependent => :destroy
   has_many :retweets, :dependent => :destroy
 
   def set_default_params
-    self.point = self.point || 0
-    self.retweets_count = self.retweets_count || 0
+    self.point = self.point || 1
   end
 
   def self.from_omniauth(auth)
-    where(auth.slice("provider_twitter", "uid_twitter")).first || create_from_twitter_omniauth(auth)
+    where(provider_twitter: auth["provider"], uid_twitter: auth["uid"]).first || create_from_twitter_omniauth(auth)
   end
 
+  def add_twitter_string(base)
+    base << "_twitter"
+  end
   def self.create_from_twitter_omniauth(auth)
     create! do |user|
       user.provider_twitter = auth["provider"]

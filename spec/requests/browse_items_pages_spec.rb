@@ -31,13 +31,15 @@ describe "A logged in user" do
     OmniAuth.config.test_mode = true
     user = FactoryGirl.create(:user)
     OmniAuth.config.mock_auth[:twitter] = {
-      :uid => 11111,
-      :provider => "twitter",
-      :info => {
-      :description => "こんにちはこんにちは！"
+      "uid" => "11111",
+      "provider" => "twitter",
+      "info" => {
+      "description" => "こんにちはこんにちは！",
+      "nickname" => "katryo",
+      "image" => "http://image.jpg"
     }
     }
-      visit "/auth/twitter"
+    visit "/auth/twitter"
   end
 
   after do
@@ -58,7 +60,7 @@ describe "A logged in user" do
       visit users_path
       page.should have_content("5ポイント")
       page.should have_content("denki")
-      click_link "の詳細"
+      click_link "katryoの詳細"
       page.should have_content("アナテマ")
       page.should have_content("削除する")
 
@@ -84,46 +86,49 @@ describe "A logged in user" do
       fill_in "item_body", :with => "アナテマ・フィジクスをぜひプレイしてみて！アナテマ・フィジクスをぜひプレイしてみて！アナテマ・フィジクスをぜひプレイしてみて！アナテマ・フィジクスをぜひプレイしてみて！アナテマ・フィジクスをぜひプレイしてみて！アナテマ・フィジクスをぜひプレイしてみて！アナテマ・フィジクスをぜひプレイしてみて！アナテマ・フィジクスをぜひプレイしてみて！アナテマ・フィジクスをぜひプレイしてみて！アナテマ・フィジクスをぜひプレイしてみて！アナテマ・フィジクスをぜひプレイしてみて！"
       click_button "登録"
       page.should have_content("error")
-  end
+    end
 
     it "should retweet when user push the button" do
-    item = FactoryGirl.create(:item)
+      item = FactoryGirl.create(:item)
       visit items_path
       click_link "宣伝一覧"
       page.should have_content("アナテマ・フィジクスを見てね！")
       page.should have_content("0回宣伝されている")
       click_link "宣伝する"
       page.should have_content("宣伝に成功しました！")
-      page.should have_content("6ポイント")
+      page.should have_content("2ポイント")
+      page.should have_content("4ポイント")
     end
   end
 
 
-describe "A logged in user" do
-  before do
-    OmniAuth.config.test_mode = true
-    item = FactoryGirl.build(:item, body: "音楽を聴いて！")
-    user = FactoryGirl.create(:user)
-    OmniAuth.config.mock_auth[:twitter] = {
-      :uid => 11111,
-      :provider => "twitter",
-      :info => {
-      :description => "こんにちはこんにちは！"
-    }
-    }
+  describe "A logged in user" do
+    before do
+      OmniAuth.config.test_mode = true
+      item = FactoryGirl.create(:item, body: "音楽を聴いて！")
+      user = FactoryGirl.create(:user)
+      OmniAuth.config.mock_auth[:twitter] = {
+        "uid" => "11111",
+        "provider" => "twitter",
+        "info" => {
+        "description" => "こんにちはこんにちは！",
+        "nickname" => "katryo",
+        "image" => "http://image.jpg"
+      }
+      }
       visit "/auth/twitter"
-  end
+    end
 
-  after do
-    OmniAuth.config.test_mode = false
-  end
+    after do
+      OmniAuth.config.test_mode = false
+    end
     it "should decrease point from the user who created the item" do
       visit items_path
       click_link "宣伝一覧"
       page.should have_content("0回宣伝されている")
       click_link "宣伝する"
       page.should have_content("宣伝に成功しました！")
-      page.should have_content("6ポイント")
+      page.should have_content("2ポイント")
       page.should have_content("(4ポイント)")
       click_link "宣伝する"
       click_link "宣伝する"
@@ -132,8 +137,35 @@ describe "A logged in user" do
       page.should have_no_content("音楽を聴いて！")
       visit "/"
       page.should have_no_content("音楽を聴いて！")
-      page.should have_content("10ポイント")
+      page.should have_content("6ポイント")
     end
 
+  end
+
+  describe "An admin user" do
+    before do
+      OmniAuth.config.test_mode = true
+      item = FactoryGirl.create(:item, body: "音楽を聴いて！")
+      user = FactoryGirl.create(:user)
+      auth_user = 'test'
+      pw = 'test_pw'
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(auth_user,pw)
+      OmniAuth.config.mock_auth[:twitter] = {
+        "uid" => "11111",
+        "provider" => "twitter",
+        "info" => {
+        "description" => "こんにちはこんにちは！",
+        "nickname" => "katryo",
+        "image" => "http://image.jpg"
+      }
+      }
+      visit "/auth/twitter"
+    end
+
+    after do
+      OmniAuth.config.test_mode = false
+    end
+    it "should decrease point from the user who created the item" do
+    end
   end
 end
