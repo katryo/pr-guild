@@ -147,9 +147,6 @@ describe "A logged in user" do
       OmniAuth.config.test_mode = true
       item = FactoryGirl.create(:item, body: "音楽を聴いて！")
       user = FactoryGirl.create(:user)
-      auth_user = 'test'
-      pw = 'test_pw'
-      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(auth_user,pw)
       OmniAuth.config.mock_auth[:twitter] = {
         "uid" => "11111",
         "provider" => "twitter",
@@ -166,6 +163,11 @@ describe "A logged in user" do
       OmniAuth.config.test_mode = false
     end
     it "should decrease point from the user who created the item" do
+      visit admin_path
+      click_link "全ユーザーのポイントを半分にする"
+      visit items_path
+      save_and_open_page
+      page.should have_content("2ポイント")
     end
   end
 end

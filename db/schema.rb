@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120906075302) do
+ActiveRecord::Schema.define(:version => 20120923123927) do
 
   create_table "items", :force => true do |t|
     t.integer  "user_id"
@@ -39,10 +39,12 @@ ActiveRecord::Schema.define(:version => 20120906075302) do
     t.string   "name_twitter"
     t.integer  "point"
     t.integer  "retweets_count"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.string   "icon_url_twitter"
     t.text     "description"
+    t.string   "oauth_token_twitter"
+    t.string   "oauth_secret_twitter"
   end
 
 end

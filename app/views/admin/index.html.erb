@@ -1,0 +1,21 @@
+<p>
+<%=link_to "全ユーザーのポイントを半分にする", half_path, :class => "btn" %>
+</p>
+<p>
+<%=link_to "全ユーザーのポイントを2倍にする", double_path, :class => "btn" %>
+</p>
+
+<%= form_for :coordination do |f| %>
+  <p>
+  <%= f.label :user %>
+  <%= f.text_field :user%>
+
+  </p>
+  <p>
+  <%= f.label :point %>
+  <%= f.number_field :point %>
+  </p>
+  <p>
+  <%= f.submit %>
+  </p>
+<% end%>

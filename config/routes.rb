@@ -1,8 +1,15 @@
 Prunion::Application.routes.draw do
+  get "admin/index"
+
   get "retweets/create", :as => :retweet
 
   get "retweets/destroy"
 
+  get "admin/index", :as => :admin
+  post "admin/index", to: 'admin#make_the_users_points_change'
+  post "admin/make_users_points_half", :as => :half
+  post "admin/make_users_points_double", :as => :double
+  
  # get "users/index", :as => :users
 
   #get "users/show"
@@ -13,7 +20,7 @@ Prunion::Application.routes.draw do
   resources :users
   resources :items
 
-  get "welcome/index"
+  get "welcome/index", :as => :welcome
   match 'auth/:provider/callback', to: 'sessions#create'
 match 'signout', to: 'sessions#destroy', as: 'signout'
 match 'auth/failure', to: redirect('/')

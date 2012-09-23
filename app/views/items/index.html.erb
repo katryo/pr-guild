@@ -1,12 +1,12 @@
 <h1>宣伝一覧</h1>
 
 
-<ul>
+<ul class="unstyled">
 
   <% @items.each do |item| %>
 
     <% if item.user.point != 0%>
-      <li>
+      <li class="well">
       <p>
     <%= link_to item.body, item %>
     <%= link_to item.retweets.count, item %>回宣伝されている
