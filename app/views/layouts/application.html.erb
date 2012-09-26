@@ -19,6 +19,7 @@
                 <%= link_to image_tag(current_user.icon_url_twitter, :size => "40x40"), current_user %>
                 <%= link_to current_user.name_twitter, current_user %>
                 <%= current_user.point %>ポイント
+                @clientは<%= @client %>
                 <%= link_to "ログアウトする", "/signout", :class => "btn"%>
               <% else %>
                 <%= link_to "Sign in with Twitter", "/auth/twitter", :class => "btn"%>
@@ -29,6 +30,11 @@
       </div><!--navbar-inner-->
     </div><!--navbar-->
     <div class="container">
+      <% if alert %>
+        <div class="alert alert-error">
+          <%= alert %>
+        </div>
+      <% end %>
       <% if notice%>
         <div class="alert alert-success">
           <%= notice %>
